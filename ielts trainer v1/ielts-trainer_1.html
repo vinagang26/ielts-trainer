@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Band 8 Drill — IELTS Writing Trainer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#10142866;
+  --bg-solid:#101428;
+  --panel:#1a2142;
+  --panel-2:#212a52;
+  --border:#2c3768;
+  --text:#eceef7;
+  --text-dim:#98a1c7;
+  --error:#e8654a;
+  --good:#7fbf8f;
+  --gold:#e3b23c;
+  --mono:'JetBrains Mono',monospace;
+  --serif:'Fraunces',serif;
+  --sans:'Inter',sans-serif;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--bg-solid);
+  background-image:
+    linear-gradient(180deg,#10142800,#10142800 40%,#0d1122 100%),
+    repeating-linear-gradient(180deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 34px);
+  color:var(--text);
+  font-family:var(--sans);
+  min-height:100vh;
+  padding:0 0 60px 0;
+}
+.wrap{max-width:880px;margin:0 auto;padding:0 24px;}
+
+/* header */
+header{
+  padding:48px 24px 32px;
+  border-bottom:1px solid var(--border);
+  margin-bottom:32px;
+}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--error);
+  margin-bottom:14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.eyebrow::before{content:"";width:20px;height:1px;background:var(--error);display:inline-block;}
+h1{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(30px,5vw,44px);
+  line-height:1.08;
+  margin:0 0 14px;
+  letter-spacing:-0.01em;
+}
+h1 em{font-style:italic;color:var(--gold);font-weight:400;}
+.sub{color:var(--text-dim);font-size:15.5px;line-height:1.6;max-width:60ch;}
+
+/* tabs */
+.tabs{
+  display:flex;
+  gap:2px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:4px;
+  margin-bottom:28px;
+}
+.tab{
+  flex:1;
+  padding:12px 10px;
+  text-align:center;
+  font-family:var(--mono);
+  font-size:12.5px;
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+  color:var(--text-dim);
+  background:transparent;
+  border:none;
+  border-radius:7px;
+  cursor:pointer;
+  transition:all .15s ease;
+}
+.tab:hover{color:var(--text);}
+.tab.active{background:var(--panel-2);color:var(--gold);}
+
+.view{display:none;}
+.view.active{display:block;animation:fade .25s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+
+/* panel / card with margin annotation strip -- signature element */
+.card{
+  position:relative;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:28px 28px 28px 56px;
+  margin-bottom:20px;
+}
+.margin-strip{
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:38px;
+  border-right:1px dashed var(--border);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding-top:24px;
+  gap:8px;
+}
+.margin-mark{
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--border);
+  writing-mode:vertical-rl;
+  letter-spacing:0.08em;
+  transition:color .2s ease;
+}
+.margin-mark.hit{color:var(--error);font-weight:700;}
+.margin-mark.hit-good{color:var(--good);font-weight:700;}
+
+.cat-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;}
+.chip{
+  font-family:var(--mono);
+  font-size:11.5px;
+  padding:6px 12px;
+  border-radius:20px;
+  border:1px solid var(--border);
+  color:var(--text-dim);
+  cursor:pointer;
+  background:transparent;
+  transition:all .15s ease;
+}
+.chip.on{border-color:var(--gold);color:var(--gold);background:rgba(227,178,60,0.08);}
+
+.qtag{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  margin-bottom:10px;
+}
+.qtext{
+  font-family:var(--serif);
+  font-size:21px;
+  line-height:1.5;
+  margin-bottom:20px;
+}
+.qtext .blank{
+  display:inline-block;
+  min-width:90px;
+  border-bottom:2px solid var(--gold);
+  color:var(--gold);
+  text-align:center;
+}
+input[type=text]{
+  width:100%;
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:15px;
+  padding:12px 14px;
+  border-radius:8px;
+  margin-bottom:14px;
+}
+input[type=text]:focus{outline:none;border-color:var(--gold);}
+button.primary{
+  font-family:var(--mono);
+  font-size:12.5px;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  background:var(--gold);
+  color:#1a1300;
+  border:none;
+  padding:12px 22px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:700;
+}
+button.primary:hover{filter:brightness(1.08);}
+button.ghost{
+  font-family:var(--mono);
+  font-size:12.5px;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  background:transparent;
+  color:var(--text-dim);
+  border:1px solid var(--border);
+  padding:12px 22px;
+  border-radius:8px;
+  cursor:pointer;
+  margin-left:10px;
+}
+button.ghost:hover{color:var(--text);border-color:var(--text-dim);}
+
+.feedback{
+  margin-top:16px;
+  padding:16px 18px;
+  border-radius:8px;
+  font-size:14.5px;
+  line-height:1.6;
+  display:none;
+}
+.feedback.show{display:block;}
+.feedback.correct{background:rgba(127,191,143,0.1);border:1px solid var(--good);color:var(--good);}
+.feedback.wrong{background:rgba(232,101,74,0.1);border:1px solid var(--error);color:#ffb3a0;}
+.feedback b{color:var(--text);}
+
+.scorebar{
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--mono);font-size:12px;color:var(--text-dim);
+  margin-bottom:18px;
+}
+.scorebar .num{color:var(--gold);font-weight:700;}
+
+/* essay view */
+.timer{
+  font-family:var(--mono);
+  font-size:34px;
+  font-weight:700;
+  color:var(--gold);
+  letter-spacing:0.02em;
+}
+.timer.warn{color:var(--error);}
+.essay-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;gap:16px;flex-wrap:wrap;}
+.prompt-box{
+  font-family:var(--serif);
+  font-size:17px;
+  line-height:1.6;
+  color:var(--text);
+  flex:1;
+  min-width:240px;
+}
+textarea{
+  width:100%;
+  min-height:280px;
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.65;
+  padding:16px;
+  border-radius:8px;
+  resize:vertical;
+}
+textarea:focus{outline:none;border-color:var(--gold);}
+.wordcount{font-family:var(--mono);font-size:12px;color:var(--text-dim);margin-top:8px;}
+.checklist{margin-top:20px;}
+.checklist-item{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:10px 0;border-bottom:1px solid var(--border);
+  font-size:14px;color:var(--text-dim);cursor:pointer;
+}
+.checklist-item input{margin-top:3px;}
+.checklist-item.done{color:var(--good);text-decoration:line-through;}
+
+/* error log */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px;}
+.stat{background:var(--panel-2);border:1px solid var(--border);border-radius:10px;padding:16px;}
+.stat .n{font-family:var(--mono);font-size:26px;color:var(--gold);font-weight:700;}
+.stat .l{font-size:12px;color:var(--text-dim);margin-top:4px;}
+.bar-row{margin-bottom:14px;}
+.bar-label{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:var(--text-dim);margin-bottom:5px;}
+.bar-track{height:8px;background:var(--panel-2);border-radius:4px;overflow:hidden;}
+.bar-fill{height:100%;background:linear-gradient(90deg,var(--error),var(--gold));border-radius:4px;transition:width .4s ease;}
+.empty{color:var(--text-dim);font-size:14px;text-align:center;padding:30px 0;}
+.reset-link{font-family:var(--mono);font-size:11.5px;color:var(--text-dim);text-decoration:underline;cursor:pointer;background:none;border:none;padding:0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Weak point: language control, not ideas</div>
+    <h1>You don't have<br><em>a Band 6.5 ceiling.</em> You have six recurring errors.</h1>
+    <div class="sub">SVA with collective/uncountable nouns. "Both...has its" instead of "have their." Missing articles. Wrong word forms. Verb forms after modals and causatives. Passive voice construction. Fix these and the score moves. Everything below drills exactly this — nothing else.</div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" data-view="drill">Drill</button>
+    <button class="tab" data-view="essay">Timed Essay</button>
+    <button class="tab" data-view="log">Error Log</button>
+  </div>
+
+  <!-- DRILL VIEW -->
+  <div class="view active" id="view-drill">
+    <div class="cat-row" id="catRow"></div>
+    <div class="card">
+      <div class="margin-strip" id="marginStrip"></div>
+      <div class="scorebar">
+        <span>SESSION SCORE: <span class="num" id="sessionScore">0/0</span></span>
+        <span id="qCounter">Q 1</span>
+      </div>
+      <div class="qtag" id="qTag">SVA</div>
+      <div class="qtext" id="qText"></div>
+      <input type="text" id="qInput" placeholder="Type the correction...">
+      <div>
+        <button class="primary" id="checkBtn">Check</button>
+        <button class="ghost" id="nextBtn" style="display:none;">Next →</button>
+      </div>
+      <div class="feedback" id="feedback"></div>
+    </div>
+  </div>
+
+  <!-- ESSAY VIEW -->
+  <div class="view" id="view-essay">
+    <div class="card" style="padding-left:28px;">
+      <div class="essay-top">
+        <div class="prompt-box" id="essayPrompt">Click "New Prompt" to start.</div>
+        <div style="text-align:right;">
+          <div class="timer" id="timerDisplay">40:00</div>
+          <div>
+            <button class="primary" id="startTimerBtn" style="margin-top:8px;">Start</button>
+            <button class="ghost" id="newPromptBtn">New Prompt</button>
+          </div>
+        </div>
+      </div>
+      <textarea id="essayText" placeholder="Write your Task 2 response here..."></textarea>
+      <div class="wordcount" id="wordCount">0 words</div>
+
+      <div class="checklist">
+        <div class="qtag" style="margin-top:20px;">Self-check before you call it done</div>
+        <div class="checklist-item" data-item="1"><input type="checkbox">Every "both X and Y" statement uses a plural verb — "both have," never "both has."</div>
+        <div class="checklist-item" data-item="2"><input type="checkbox">Every singular countable noun has an article (a/an/the) — check "government," "problem," "solution," "issue."</div>
+        <div class="checklist-item" data-item="3"><input type="checkbox">Collective/uncountable nouns (government, news, information, research) take singular verbs.</div>
+        <div class="checklist-item" data-item="4"><input type="checkbox">After modals (should, can, must) — bare infinitive, no "to." After causatives (make, let) — same rule.</div>
+        <div class="checklist-item" data-item="5"><input type="checkbox">Passive voice checked: "should be taught," not "should teach," when the subject doesn't do the action.</div>
+        <div class="checklist-item" data-item="6"><input type="checkbox">Word forms match their grammatical slot — noun vs. adjective vs. adverb (economic/economical, effect/affect).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOG VIEW -->
+  <div class="view" id="view-log">
+    <div class="stat-grid" id="statGrid"></div>
+    <div class="card" style="padding-left:28px;">
+      <div class="qtag">Accuracy by category</div>
+      <div id="barChart"></div>
+      <div style="margin-top:18px;"><button class="reset-link" id="resetBtn">Reset all progress data</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------- Question bank, built from known recurring errors ---------- */
+const BANK = [
+  {cat:"SVA", tag:"SVA — collective/uncountable", text:'The government <span class="blank">___</span> (has/have) failed to address housing costs.', answer:"has", explain:'"Government" is a collective noun treated as singular in this context → <b>has</b>, not have.'},
+  {cat:"SVA", tag:"SVA — collective/uncountable", text:'Recent research <span class="blank">___</span> (suggest/suggests) that remote work improves productivity.', answer:"suggests", explain:'"Research" is uncountable → takes a singular verb: <b>suggests</b>.'},
+  {cat:"SVA", tag:"SVA — collective/uncountable", text:'The news about the economy <span class="blank">___</span> (was/were) alarming.', answer:"was", explain:'"News" looks plural but is always singular → <b>was</b>.'},
+  {cat:"SVA", tag:"SVA — collective/uncountable", text:'A number of students <span class="blank">___</span> (has/have) dropped the course.', answer:"have", explain:'"A number of + plural noun" takes a plural verb → <b>have</b>. (Contrast with "the number of," which is singular.)'},
+  {cat:"BOTH", tag:'"Both...have" fixed error', text:'Both economic growth and environmental protection <span class="blank">___</span> (has its/have their) place in policy.', answer:"have their", explain:'"Both X and Y" is always plural → <b>have their</b>, never "has its."'},
+  {cat:"BOTH", tag:'"Both...have" fixed error', text:'Both the government and private companies <span class="blank">___</span> (has its/have their) role to play.', answer:"have their", explain:'Fixed pattern: <b>both ... have their</b>. This is a rule, not a judgment call — memorize it.'},
+  {cat:"ART", tag:"Article — singular countable", text:'<span class="blank">___</span> (blank/the) government should invest more in education.', answer:"the", explain:'"Government" here is a specific, known institution → needs <b>the</b>.'},
+  {cat:"ART", tag:"Article — singular countable", text:'Technology has become <span class="blank">___</span> (blank/a) major part of daily life.', answer:"a", explain:'Singular countable noun ("major part") introduced for the first time → needs <b>a</b>.'},
+  {cat:"ART", tag:"Article — singular countable", text:'This is <span class="blank">___</span> (blank/an) effective solution to the problem.', answer:"an", explain:'"Effective" starts with a vowel sound → <b>an</b>, and the noun "solution" is singular countable so it needs an article at all.'},
+  {cat:"MOD", tag:"Modal / causative verb form", text:'Governments should <span class="blank">___</span> (to reduce/reduce) carbon emissions.', answer:"reduce", explain:'After a modal (should, can, must) → bare infinitive, no "to": <b>reduce</b>.'},
+  {cat:"MOD", tag:"Modal / causative verb form", text:'Strict laws make people <span class="blank">___</span> (to follow/follow) the rules.', answer:"follow", explain:'After the causative "make" → bare infinitive: <b>follow</b>, not "to follow."'},
+  {cat:"MOD", tag:"Modal / causative verb form", text:'Parents should let children <span class="blank">___</span> (to make/make) their own decisions.', answer:"make", explain:'After causative "let" → bare infinitive: <b>make</b>.'},
+  {cat:"PASS", tag:"Passive voice construction", text:'Basic financial literacy should <span class="blank">___</span> (teach/be taught) in schools.', answer:"be taught", explain:'The subject ("financial literacy") doesn\'t do the teaching, it receives it → passive: <b>be taught</b>.'},
+  {cat:"PASS", tag:"Passive voice construction", text:'The proposal will <span class="blank">___</span> (review/be reviewed) by the committee next week.', answer:"be reviewed", explain:'The proposal is acted upon, not acting → <b>be reviewed</b>.'},
+  {cat:"WF", tag:"Word form", text:'Choose the correct form: The policy had a significant <span class="blank">___</span> (economic/economical) impact on the region.', answer:"economic", explain:'"Economic" = relating to the economy. "Economical" = money-saving/thrifty. You need <b>economic</b>.'},
+  {cat:"WF", tag:"Word form", text:'Choose the correct form: Recycling is an <span class="blank">___</span> (effective/effectively) way to reduce waste.', answer:"effective", explain:'You need an adjective to modify "way" → <b>effective</b>, not the adverb "effectively."'},
+  {cat:"WF", tag:"Word form", text:'Choose the correct form: The new policy will <span class="blank">___</span> (affect/effect) thousands of workers.', answer:"affect", explain:'"Affect" is the verb (to influence). "Effect" is usually the noun (a result). You need the verb → <b>affect</b>.'},
+  {cat:"SVA", tag:"SVA — collective/uncountable", text:'The equipment in the lab <span class="blank">___</span> (need/needs) upgrading.', answer:"needs", explain:'"Equipment" is uncountable → singular verb: <b>needs</b>.'},
+];
+
+const catNames = {SVA:"SVA", BOTH:"Both...have", ART:"Articles", MOD:"Modal/Causative", PASS:"Passive", WF:"Word Form"};
+let activeCats = new Set(Object.keys(catNames));
+let pool = [], qIndex = 0, sessionCorrect = 0, sessionTotal = 0;
+
+function buildPool(){
+  pool = BANK.filter(q=>activeCats.has(q.cat)).sort(()=>Math.random()-0.5);
+  qIndex = 0;
+}
+
+function renderCats(){
+  const row = document.getElementById('catRow');
+  row.innerHTML = '';
+  Object.entries(catNames).forEach(([key,label])=>{
+    const chip = document.createElement('button');
+    chip.className = 'chip on';
+    chip.textContent = label;
+    chip.dataset.cat = key;
+    chip.onclick = ()=>{
+      if(activeCats.has(key) && activeCats.size>1){activeCats.delete(key); chip.classList.remove('on');}
+      else if(!activeCats.has(key)){activeCats.add(key); chip.classList.add('on');}
+      buildPool(); renderMarginStrip(); showQuestion();
+    };
+    row.appendChild(chip);
+  });
+}
+
+function renderMarginStrip(){
+  const strip = document.getElementById('marginStrip');
+  strip.innerHTML = '';
+  Object.keys(catNames).forEach(key=>{
+    const mark = document.createElement('div');
+    mark.className = 'margin-mark';
+    mark.dataset.cat = key;
+    mark.textContent = key;
+    strip.appendChild(mark);
+  });
+}
+
+function showQuestion(){
+  if(pool.length===0){ document.getElementById('qText').innerHTML = "No categories selected."; return; }
+  if(qIndex >= pool.length){ buildPool(); }
+  const q = pool[qIndex];
+  document.getElementById('qTag').textContent = q.tag;
+  document.getElementById('qText').innerHTML = q.text;
+  document.getElementById('qCounter').textContent = 'Q ' + (qIndex+1);
+  document.getElementById('qInput').value = '';
+  document.getElementById('qInput').disabled = false;
+  document.getElementById('feedback').className = 'feedback';
+  document.getElementById('checkBtn').style.display = 'inline-block';
+  document.getElementById('nextBtn').style.display = 'none';
+  document.querySelectorAll('.margin-mark').forEach(m=>{m.classList.remove('hit','hit-good');});
+}
+
+/* Storage abstraction: uses Claude's window.storage when available (artifact viewer),
+   falls back to localStorage when the file is opened standalone in a browser. */
+const hasNativeStorage = (typeof window.storage !== 'undefined');
+
+async function storageGet(key){
+  if(hasNativeStorage){
+    try{ return await window.storage.get(key); }catch(e){ return null; }
+  }
+  const raw = localStorage.getItem(key);
+  return raw ? {key, value: raw} : null;
+}
+
+async function storageSet(key, value){
+  if(hasNativeStorage){
+    try{ return await window.storage.set(key, value); }catch(e){ return null; }
+  }
+  try{ localStorage.setItem(key, value); return {key, value}; }
+  catch(e){ console.error('localStorage failed', e); return null; }
+}
+
+async function logMistake(cat){
+  try{
+    const res = await storageGet('drill-stats');
+    let stats = res ? JSON.parse(res.value) : {};
+    Object.keys(catNames).forEach(k=>{ if(!stats[k]) stats[k]={correct:0,total:0}; });
+    return stats;
+  }catch(e){ return null; }
+}
+
+async function saveStat(cat, correct){
+  try{
+    let stats = await logMistake(cat);
+    if(!stats) return;
+    stats[cat].total += 1;
+    if(correct) stats[cat].correct += 1;
+    await storageSet('drill-stats', JSON.stringify(stats));
+  }catch(e){ console.error('storage error', e); }
+}
+
+document.getElementById('checkBtn').onclick = async ()=>{
+  const q = pool[qIndex];
+  const val = document.getElementById('qInput').value.trim().toLowerCase();
+  const correct = val === q.answer.toLowerCase();
+  const fb = document.getElementById('feedback');
+  fb.className = 'feedback show ' + (correct ? 'correct' : 'wrong');
+  fb.innerHTML = (correct ? '✓ Correct. ' : '✗ Not quite — correct answer: <b>'+q.answer+'</b>. ') + q.explain;
+  const mark = document.querySelector('.margin-mark[data-cat="'+q.cat+'"]');
+  if(mark) mark.classList.add(correct ? 'hit-good' : 'hit');
+  sessionTotal++; if(correct) sessionCorrect++;
+  document.getElementById('sessionScore').textContent = sessionCorrect + '/' + sessionTotal;
+  document.getElementById('qInput').disabled = true;
+  document.getElementById('checkBtn').style.display = 'none';
+  document.getElementById('nextBtn').style.display = 'inline-block';
+  await saveStat(q.cat, correct);
+};
+document.getElementById('nextBtn').onclick = ()=>{ qIndex++; showQuestion(); };
+document.getElementById('qInput').addEventListener('keydown', e=>{
+  if(e.key==='Enter' && document.getElementById('checkBtn').style.display!=='none') document.getElementById('checkBtn').click();
+});
+
+/* ---------- Tabs ---------- */
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.onclick = ()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('view-'+tab.dataset.view).classList.add('active');
+    if(tab.dataset.view==='log') renderLog();
+  };
+});
+
+/* ---------- Essay view ---------- */
+const PROMPTS = [
+  "Some people believe that unpaid community service should be a compulsory part of high school education. To what extent do you agree or disagree?",
+  "In many countries, the gap between the rich and the poor is widening. What problems does this cause, and what solutions can you suggest?",
+  "Some argue that technology has made people more isolated, while others believe it has brought people closer together. Discuss both views and give your own opinion.",
+  "Governments should invest more in public transport rather than building new roads for cars. To what extent do you agree or disagree?",
+  "Some people think that children should begin learning a foreign language as soon as they start school. Do the advantages outweigh the disadvantages?",
+  "Many people believe that success in life comes from taking risks, while others think careful planning is more important. Discuss both views and give your opinion.",
+];
+document.getElementById('newPromptBtn').onclick = ()=>{
+  document.getElementById('essayPrompt').textContent = PROMPTS[Math.floor(Math.random()*PROMPTS.length)];
+};
+document.getElementById('essayText').addEventListener('input', e=>{
+  const words = e.target.value.trim().split(/\s+/).filter(Boolean).length;
+  document.getElementById('wordCount').textContent = words + ' words (target: 250+)';
+});
+document.querySelectorAll('.checklist-item').forEach(item=>{
+  const box = item.querySelector('input');
+  box.addEventListener('change', ()=>{ item.classList.toggle('done', box.checked); });
+});
+
+let timerInterval = null, timeLeft = 40*60, timerRunning = false;
+function renderTimer(){
+  const m = Math.floor(timeLeft/60).toString().padStart(2,'0');
+  const s = (timeLeft%60).toString().padStart(2,'0');
+  const disp = document.getElementById('timerDisplay');
+  disp.textContent = m+':'+s;
+  disp.classList.toggle('warn', timeLeft <= 300);
+}
+document.getElementById('startTimerBtn').onclick = ()=>{
+  if(timerRunning){
+    clearInterval(timerInterval); timerRunning = false;
+    document.getElementById('startTimerBtn').textContent = 'Resume';
+    return;
+  }
+  timerRunning = true;
+  document.getElementById('startTimerBtn').textContent = 'Pause';
+  timerInterval = setInterval(()=>{
+    timeLeft--; renderTimer();
+    if(timeLeft<=0){ clearInterval(timerInterval); timerRunning=false; document.getElementById('essayText').disabled=true; }
+  },1000);
+};
+renderTimer();
+
+/* ---------- Error log view ---------- */
+async function renderLog(){
+  const grid = document.getElementById('statGrid');
+  const chart = document.getElementById('barChart');
+  grid.innerHTML = '<div class="empty" style="grid-column:1/-1;">Loading...</div>';
+  let stats;
+  try{
+    const res = await storageGet('drill-stats');
+    stats = res ? JSON.parse(res.value) : null;
+  }catch(e){ stats = null; }
+
+  if(!stats){
+    grid.innerHTML = '<div class="empty" style="grid-column:1/-1;">No drill data yet — go answer some questions.</div>';
+    chart.innerHTML = '';
+    return;
+  }
+
+  let totalCorrect=0, totalQ=0;
+  Object.values(stats).forEach(s=>{ totalCorrect+=s.correct; totalQ+=s.total; });
+  const acc = totalQ ? Math.round((totalCorrect/totalQ)*100) : 0;
+
+  grid.innerHTML = `
+    <div class="stat"><div class="n">${totalQ}</div><div class="l">Questions drilled</div></div>
+    <div class="stat"><div class="n">${acc}%</div><div class="l">Overall accuracy</div></div>
+    <div class="stat"><div class="n">${totalCorrect}</div><div class="l">Correct answers</div></div>
+  `;
+
+  chart.innerHTML = '';
+  Object.entries(catNames).forEach(([key,label])=>{
+    const s = stats[key] || {correct:0,total:0};
+    const pct = s.total ? Math.round((s.correct/s.total)*100) : 0;
+    const row = document.createElement('div');
+    row.className = 'bar-row';
+    row.innerHTML = `
+      <div class="bar-label"><span>${label}</span><span>${s.correct}/${s.total} · ${pct}%</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
+    `;
+    chart.appendChild(row);
+  });
+}
+
+document.getElementById('resetBtn').onclick = async ()=>{
+  if(!confirm('This clears all saved drill progress. Continue?')) return;
+  try{
+    const empty = {};
+    Object.keys(catNames).forEach(k=>{ empty[k]={correct:0,total:0}; });
+    await storageSet('drill-stats', JSON.stringify(empty));
+    renderLog();
+  }catch(e){ console.error(e); }
+};
+
+/* ---------- init ---------- */
+renderCats();
+renderMarginStrip();
+buildPool();
+showQuestion();
+</script>
+</body>
+</html>

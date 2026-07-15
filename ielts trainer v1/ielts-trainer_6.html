@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Band 8 Drill — IELTS Writing Trainer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#10142866;
+  --bg-solid:#101428;
+  --panel:#1a2142;
+  --panel-2:#212a52;
+  --border:#2c3768;
+  --text:#eceef7;
+  --text-dim:#98a1c7;
+  --error:#e8654a;
+  --good:#7fbf8f;
+  --gold:#e3b23c;
+  --mono:'JetBrains Mono',monospace;
+  --serif:'Fraunces',serif;
+  --sans:'Inter',sans-serif;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--bg-solid);
+  background-image:
+    linear-gradient(180deg,#10142800,#10142800 40%,#0d1122 100%),
+    repeating-linear-gradient(180deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 34px);
+  color:var(--text);
+  font-family:var(--sans);
+  min-height:100vh;
+  padding:0 0 60px 0;
+}
+.wrap{max-width:880px;margin:0 auto;padding:0 24px;}
+
+/* header */
+header{
+  padding:24px 24px 20px;
+  border-bottom:1px solid var(--border);
+  margin-bottom:32px;
+}
+.header-top{display:flex;justify-content:space-between;align-items:center;gap:16px;}
+.brand{font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:-0.01em;}
+.sub-compact{font-family:var(--mono);font-size:11px;letter-spacing:0.03em;color:var(--text-dim);margin-top:8px;}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--error);
+  margin-bottom:14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.eyebrow::before{content:"";width:20px;height:1px;background:var(--error);display:inline-block;}
+h1{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(30px,5vw,44px);
+  line-height:1.08;
+  margin:0 0 14px;
+  letter-spacing:-0.01em;
+}
+h1 em{font-style:italic;color:var(--gold);font-weight:400;}
+.sub{color:var(--text-dim);font-size:15.5px;line-height:1.6;max-width:60ch;}
+
+/* tabs */
+.tabs{
+  display:flex;
+  gap:2px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:4px;
+  margin-bottom:28px;
+}
+.tab{
+  flex:1;
+  padding:12px 10px;
+  text-align:center;
+  font-family:var(--mono);
+  font-size:12.5px;
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+  color:var(--text-dim);
+  background:transparent;
+  border:none;
+  border-radius:7px;
+  cursor:pointer;
+  transition:all .15s ease;
+}
+.tab:hover{color:var(--text);}
+.tab.active{background:var(--panel-2);color:var(--gold);}
+
+.view{display:none;}
+.view.active{display:block;animation:fade .25s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+
+/* panel / card with margin annotation strip -- signature element */
+.card{
+  position:relative;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:28px 28px 28px 56px;
+  margin-bottom:20px;
+}
+.margin-strip{
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:38px;
+  border-right:1px dashed var(--border);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding-top:24px;
+  gap:8px;
+}
+.margin-mark{
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--border);
+  writing-mode:vertical-rl;
+  letter-spacing:0.08em;
+  transition:color .2s ease;
+}
+.margin-mark.hit{color:var(--error);font-weight:700;}
+.margin-mark.hit-good{color:var(--good);font-weight:700;}
+
+.cat-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;}
+.chip{
+  font-family:var(--mono);
+  font-size:11.5px;
+  padding:6px 12px;
+  border-radius:20px;
+  border:1px solid var(--border);
+  color:var(--text-dim);
+  cursor:pointer;
+  background:transparent;
+  transition:all .15s ease;
+}
+.chip.on{border-color:var(--gold);color:var(--gold);background:rgba(227,178,60,0.08);}
+
+.qtag{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  margin-bottom:10px;
+}
+.qtext{
+  font-family:var(--serif);
+  font-size:21px;
+  line-height:1.5;
+  margin-bottom:20px;
+}
+.qtext .blank{
+  display:inline-block;
+  min-width:90px;
+  border-bottom:2px solid var(--gold);
+  color:var(--gold);
+  text-align:center;
+}
+input[type=text]{
+  width:100%;
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:15px;
+  padding:12px 14px;
+  border-radius:8px;
+  margin-bottom:14px;
+}
+input[type=text]:focus{outline:none;border-color:var(--gold);}
+button.primary{
+  font-family:var(--mono);
+  font-size:12.5px;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  background:var(--gold);
+  color:#1a1300;
+  border:none;
+  padding:12px 22px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:700;
+}
+button.primary:hover{filter:brightness(1.08);}
+button.ghost{
+  font-family:var(--mono);
+  font-size:12.5px;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  background:transparent;
+  color:var(--text-dim);
+  border:1px solid var(--border);
+  padding:12px 22px;
+  border-radius:8px;
+  cursor:pointer;
+  margin-left:10px;
+}
+button.ghost:hover{color:var(--text);border-color:var(--text-dim);}
+
+.feedback{
+  margin-top:16px;
+  padding:16px 18px;
+  border-radius:8px;
+  font-size:14.5px;
+  line-height:1.6;
+  display:none;
+}
+.feedback.show{display:block;}
+.feedback.correct{background:rgba(127,191,143,0.1);border:1px solid var(--good);color:var(--good);}
+.feedback.wrong{background:rgba(232,101,74,0.1);border:1px solid var(--error);color:#ffb3a0;}
+.feedback b{color:var(--text);}
+
+.scorebar{
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--mono);font-size:12px;color:var(--text-dim);
+  margin-bottom:18px;
+}
+.scorebar .num{color:var(--gold);font-weight:700;}
+
+/* essay view */
+.timer{
+  font-family:var(--mono);
+  font-size:34px;
+  font-weight:700;
+  color:var(--gold);
+  letter-spacing:0.02em;
+}
+.timer.warn{color:var(--error);}
+.essay-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;gap:16px;flex-wrap:wrap;}
+.prompt-box{
+  font-family:var(--serif);
+  font-size:17px;
+  line-height:1.6;
+  color:var(--text);
+  flex:1;
+  min-width:240px;
+}
+textarea{
+  width:100%;
+  min-height:280px;
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.65;
+  padding:16px;
+  border-radius:8px;
+  resize:vertical;
+}
+textarea:focus{outline:none;border-color:var(--gold);}
+.wordcount{font-family:var(--mono);font-size:12px;color:var(--text-dim);margin-top:8px;}
+.checklist{margin-top:20px;}
+.checklist-item{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:10px 0;border-bottom:1px solid var(--border);
+  font-size:14px;color:var(--text-dim);cursor:pointer;
+}
+.checklist-item input{margin-top:3px;}
+.checklist-item.done{color:var(--good);text-decoration:line-through;}
+
+/* error log */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px;}
+.stat{background:var(--panel-2);border:1px solid var(--border);border-radius:10px;padding:16px;}
+.stat .n{font-family:var(--mono);font-size:26px;color:var(--gold);font-weight:700;}
+.stat .l{font-size:12px;color:var(--text-dim);margin-top:4px;}
+.bar-row{margin-bottom:14px;}
+.bar-label{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:var(--text-dim);margin-bottom:5px;}
+.bar-track{height:8px;background:var(--panel-2);border-radius:4px;overflow:hidden;}
+.bar-fill{height:100%;background:linear-gradient(90deg,var(--error),var(--gold));border-radius:4px;transition:width .4s ease;}
+.empty{color:var(--text-dim);font-size:14px;text-align:center;padding:30px 0;}
+.ai-error-card{
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  border-left:3px solid var(--error);
+  border-radius:8px;
+  padding:14px 16px;
+  margin-bottom:10px;
+}
+.ai-error-card .tag{font-family:var(--mono);font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;}
+.ai-error-card .quote{font-family:var(--serif);font-size:15px;color:#ffb3a0;margin-bottom:4px;}
+.ai-error-card .arrow{color:var(--text-dim);font-family:var(--mono);font-size:12px;}
+.ai-error-card .fix{font-family:var(--serif);font-size:15px;color:var(--good);}
+.ai-error-card .note{font-size:13px;color:var(--text-dim);margin-top:6px;line-height:1.5;}
+.spin{display:inline-block;width:11px;height:11px;border:2px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.reset-link{font-family:var(--mono);font-size:11.5px;color:var(--text-dim);text-decoration:underline;cursor:pointer;background:none;border:none;padding:0;}
+
+/* calendar */
+.cal-daylabels{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:8px;}
+.cal-daylabels span{font-family:var(--mono);font-size:10px;color:var(--text-dim);text-align:center;text-transform:uppercase;}
+.cal-daylabels span.weekend{color:var(--gold);}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
+.cal-cell{
+  width:100%;aspect-ratio:1;border-radius:4px;
+  background:var(--panel-2);border:1px solid var(--border);
+  display:inline-block;
+}
+.cal-cell.weekend-border{border-color:var(--gold);}
+.cal-cell.future{opacity:0.25;}
+.cal-legend{display:flex;align-items:center;gap:6px;margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--text-dim);}
+.cal-legend .cal-cell{width:14px;height:14px;aspect-ratio:unset;}
+
+/* trend */
+.trend-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);}
+.trend-row:last-child{border-bottom:none;}
+.trend-label{font-family:var(--mono);font-size:13px;color:var(--text);}
+.trend-numbers{font-family:var(--mono);font-size:12px;color:var(--text-dim);}
+.trend-delta{font-family:var(--mono);font-size:13px;font-weight:700;padding:3px 9px;border-radius:12px;}
+.trend-delta.up{color:var(--good);background:rgba(127,191,143,0.12);}
+.trend-delta.down{color:var(--error);background:rgba(232,101,74,0.12);}
+.trend-delta.flat{color:var(--text-dim);background:rgba(152,161,199,0.1);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="header-top">
+      <div class="brand">IELTS Writing Trainer</div>
+      <button class="ghost" id="toggleHeaderBtn" style="padding:6px 14px;font-size:11px;">Why this exists</button>
+    </div>
+    <div class="sub-compact">SVA · Both...have · Articles · Modal/Causative · Passive · Word form</div>
+    <div id="headerDetail" style="display:none;margin-top:16px;">
+      <div class="eyebrow">Weak point: language control, not ideas</div>
+      <h1>You don't have<br><em>a Band 6.5 ceiling.</em> You have six recurring errors.</h1>
+      <div class="sub">SVA with collective/uncountable nouns. "Both...has its" instead of "have their." Missing articles. Wrong word forms. Verb forms after modals and causatives. Passive voice construction. Fix these and the score moves. Everything below drills exactly this — nothing else.</div>
+    </div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" data-view="drill">Drill</button>
+    <button class="tab" data-view="essay">Timed Essay</button>
+    <button class="tab" data-view="calendar">Calendar</button>
+    <button class="tab" data-view="log">Error Log</button>
+  </div>
+
+  <!-- DRILL VIEW -->
+  <div class="view active" id="view-drill">
+    <div class="cat-row" id="catRow"></div>
+
+    <div class="card" id="sessionStartCard" style="padding-left:28px;">
+      <div class="qtag">Spaced repetition queue</div>
+      <div class="qtext" style="font-size:17px;" id="dueSummary">Loading your queue...</div>
+      <button class="primary" id="startSessionBtn">Start Session</button>
+    </div>
+
+    <div class="card" id="drillCard" style="display:none;">
+      <div class="margin-strip" id="marginStrip"></div>
+      <div class="scorebar">
+        <span>SESSION SCORE: <span class="num" id="sessionScore">0/0</span></span>
+        <span id="qCounter">Q 1</span>
+      </div>
+      <div class="qtag" id="qTag">SVA</div>
+      <div class="qtext" id="qText"></div>
+      <input type="text" id="qInput" placeholder="Type the correction...">
+      <div>
+        <button class="primary" id="checkBtn">Check</button>
+        <button class="ghost" id="nextBtn" style="display:none;">Next →</button>
+      </div>
+      <div class="feedback" id="feedback"></div>
+    </div>
+
+    <div class="card" id="sessionDoneCard" style="display:none;padding-left:28px;">
+      <div class="qtag">Session complete</div>
+      <div class="qtext" id="sessionDoneText" style="font-size:17px;"></div>
+      <button class="primary" id="newSessionBtn">Start Another Session</button>
+    </div>
+  </div>
+
+  <!-- ESSAY VIEW -->
+  <div class="view" id="view-essay">
+    <div class="card" style="padding-left:28px;">
+      <div class="essay-top">
+        <div class="prompt-box" id="essayPrompt">Click "New Prompt" to start.</div>
+        <div style="text-align:right;">
+          <div class="timer" id="timerDisplay">40:00</div>
+          <div>
+            <button class="primary" id="startTimerBtn" style="margin-top:8px;">Start</button>
+            <button class="ghost" id="newPromptBtn">New Prompt</button>
+          </div>
+        </div>
+      </div>
+      <textarea id="essayText" placeholder="Write your Task 2 response here..."></textarea>
+      <div class="wordcount" id="wordCount">0 words</div>
+
+      <div style="margin-top:16px;">
+        <button class="primary" id="aiFeedbackBtn">Get AI Feedback</button>
+        <span id="aiStatus" style="font-family:var(--mono);font-size:12px;color:var(--text-dim);margin-left:12px;"></span>
+      </div>
+
+      <div id="aiFeedbackPanel" style="display:none;margin-top:20px;border-top:1px solid var(--border);padding-top:20px;">
+        <div class="essay-top" style="align-items:center;">
+          <div>
+            <div class="qtag">Estimated band</div>
+            <div class="timer" id="aiBand" style="font-size:40px;">-</div>
+          </div>
+          <div class="prompt-box" id="aiSummary" style="flex:2;"></div>
+        </div>
+        <div id="aiErrorList" style="margin-top:16px;"></div>
+      </div>
+
+      <div class="checklist">
+        <div class="qtag" style="margin-top:20px;">Self-check before you call it done</div>
+        <div class="checklist-item" data-item="1"><input type="checkbox">Every "both X and Y" statement uses a plural verb — "both have," never "both has."</div>
+        <div class="checklist-item" data-item="2"><input type="checkbox">Every singular countable noun has an article (a/an/the) — check "government," "problem," "solution," "issue."</div>
+        <div class="checklist-item" data-item="3"><input type="checkbox">Collective/uncountable nouns (government, news, information, research) take singular verbs.</div>
+        <div class="checklist-item" data-item="4"><input type="checkbox">After modals (should, can, must) — bare infinitive, no "to." After causatives (make, let) — same rule.</div>
+        <div class="checklist-item" data-item="5"><input type="checkbox">Passive voice checked: "should be taught," not "should teach," when the subject doesn't do the action.</div>
+        <div class="checklist-item" data-item="6"><input type="checkbox">Word forms match their grammatical slot — noun vs. adjective vs. adverb (economic/economical, effect/affect).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALENDAR VIEW -->
+  <div class="view" id="view-calendar">
+    <div class="stat-grid" id="calStatGrid"></div>
+    <div class="card" style="padding-left:28px;">
+      <div class="qtag">Last 4 weeks — time actually spent</div>
+      <div class="cal-daylabels" id="calDayLabels"></div>
+      <div class="cal-grid" id="calGrid"></div>
+      <div class="cal-legend">
+        <span>Less</span>
+        <span class="cal-cell" style="background:var(--panel-2);"></span>
+        <span class="cal-cell" style="background:#3a3560;"></span>
+        <span class="cal-cell" style="background:#6b4f6a;"></span>
+        <span class="cal-cell" style="background:#a5556a;"></span>
+        <span class="cal-cell" style="background:var(--error);"></span>
+        <span>More</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOG VIEW -->
+  <div class="view" id="view-log">
+    <div class="stat-grid" id="statGrid"></div>
+    <div class="card" style="padding-left:28px;">
+      <div class="qtag">Accuracy by category (all-time)</div>
+      <div id="barChart"></div>
+    </div>
+    <div class="card" style="padding-left:28px;">
+      <div class="qtag">This week vs last week — is it actually improving?</div>
+      <div id="trendChart"></div>
+      <div style="margin-top:18px;"><button class="reset-link" id="resetBtn">Reset all progress data</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------- Question bank, built from known recurring errors ---------- */
+const BANK = [
+  {cat:"SVA", tag:"SVA — collective/uncountable", text:'The government <span class="blank">___</span> (has/have) failed to address housing costs.', answer:"has", explain:'"Government" is a collective noun treated as singular in this context → <b>has</b>, not have.'},
+  {cat:"SVA", tag:"SVA — collective/uncountable", text:'Recent research <span class="blank">___</span> (suggest/suggests) that remote work improves productivity.', answer:"suggests", explain:'"Research" is uncountable → takes a singular verb: <b>suggests</b>.'},
+  {cat:"SVA", tag:"SVA — collective/uncountable", text:'The news about the economy <span class="blank">___</span> (was/were) alarming.', answer:"was", explain:'"News" looks plural but is always singular → <b>was</b>.'},
+  {cat:"SVA", tag:"SVA — collective/uncountable", text:'A number of students <span class="blank">___</span> (has/have) dropped the course.', answer:"have", explain:'"A number of + plural noun" takes a plural verb → <b>have</b>. (Contrast with "the number of," which is singular.)'},
+  {cat:"BOTH", tag:'"Both...have" fixed error', text:'Both economic growth and environmental protection <span class="blank">___</span> (has its/have their) place in policy.', answer:"have their", explain:'"Both X and Y" is always plural → <b>have their</b>, never "has its."'},
+  {cat:"BOTH", tag:'"Both...have" fixed error', text:'Both the government and private companies <span class="blank">___</span> (has its/have their) role to play.', answer:"have their", explain:'Fixed pattern: <b>both ... have their</b>. This is a rule, not a judgment call — memorize it.'},
+  {cat:"ART", tag:"Article — singular countable", text:'<span class="blank">___</span> (blank/the) government should invest more in education.', answer:"the", explain:'"Government" here is a specific, known institution → needs <b>the</b>.'},
+  {cat:"ART", tag:"Article — singular countable", text:'Technology has become <span class="blank">___</span> (blank/a) major part of daily life.', answer:"a", explain:'Singular countable noun ("major part") introduced for the first time → needs <b>a</b>.'},
+  {cat:"ART", tag:"Article — singular countable", text:'This is <span class="blank">___</span> (blank/an) effective solution to the problem.', answer:"an", explain:'"Effective" starts with a vowel sound → <b>an</b>, and the noun "solution" is singular countable so it needs an article at all.'},
+  {cat:"MOD", tag:"Modal / causative verb form", text:'Governments should <span class="blank">___</span> (to reduce/reduce) carbon emissions.', answer:"reduce", explain:'After a modal (should, can, must) → bare infinitive, no "to": <b>reduce</b>.'},
+  {cat:"MOD", tag:"Modal / causative verb form", text:'Strict laws make people <span class="blank">___</span> (to follow/follow) the rules.', answer:"follow", explain:'After the causative "make" → bare infinitive: <b>follow</b>, not "to follow."'},
+  {cat:"MOD", tag:"Modal / causative verb form", text:'Parents should let children <span class="blank">___</span> (to make/make) their own decisions.', answer:"make", explain:'After causative "let" → bare infinitive: <b>make</b>.'},
+  {cat:"PASS", tag:"Passive voice construction", text:'Basic financial literacy should <span class="blank">___</span> (teach/be taught) in schools.', answer:"be taught", explain:'The subject ("financial literacy") doesn\'t do the teaching, it receives it → passive: <b>be taught</b>.'},
+  {cat:"PASS", tag:"Passive voice construction", text:'The proposal will <span class="blank">___</span> (review/be reviewed) by the committee next week.', answer:"be reviewed", explain:'The proposal is acted upon, not acting → <b>be reviewed</b>.'},
+  {cat:"WF", tag:"Word form", text:'Choose the correct form: The policy had a significant <span class="blank">___</span> (economic/economical) impact on the region.', answer:"economic", explain:'"Economic" = relating to the economy. "Economical" = money-saving/thrifty. You need <b>economic</b>.'},
+  {cat:"WF", tag:"Word form", text:'Choose the correct form: Recycling is an <span class="blank">___</span> (effective/effectively) way to reduce waste.', answer:"effective", explain:'You need an adjective to modify "way" → <b>effective</b>, not the adverb "effectively."'},
+  {cat:"WF", tag:"Word form", text:'Choose the correct form: The new policy will <span class="blank">___</span> (affect/effect) thousands of workers.', answer:"affect", explain:'"Affect" is the verb (to influence). "Effect" is usually the noun (a result). You need the verb → <b>affect</b>.'},
+  {cat:"SVA", tag:"SVA — collective/uncountable", text:'The equipment in the lab <span class="blank">___</span> (need/needs) upgrading.', answer:"needs", explain:'"Equipment" is uncountable → singular verb: <b>needs</b>.'},
+];
+
+const catNames = {SVA:"SVA", BOTH:"Both...have", ART:"Articles", MOD:"Modal/Causative", PASS:"Passive", WF:"Word Form"};
+const CAT_DEFS = `SVA = subject-verb agreement errors with collective or uncountable nouns (e.g. "government have", "research suggest", "news were").
+BOTH = the fixed error "both X and Y has its" instead of "both X and Y have their".
+ART = missing or wrong article (a/an/the) before a singular countable noun.
+MOD = wrong verb form after a modal (should/can/must) or causative verb (make/let), e.g. "should to reduce" or "make people to follow".
+PASS = passive voice construction errors, e.g. missing "be" as in "should teach" instead of "should be taught".
+WF = wrong word form confusion (noun/adjective/adverb, e.g. "economic" vs "economical", "effective" vs "effectively").`;
+
+let activeCats = new Set(Object.keys(catNames));
+let cards = {};              // full persistent card store, keyed by id
+let sessionQueue = [];       // array of card ids for the current session
+let sessionCorrect = 0, sessionTotal = 0;
+let sessionStartTime = null;
+const SESSION_SIZE = 10;
+
+function todayStr(){ return new Date().toISOString().slice(0,10); }
+function addDays(dateStr, n){
+  const d = new Date(dateStr + 'T00:00:00');
+  d.setDate(d.getDate() + Math.max(0, Math.round(n)));
+  return d.toISOString().slice(0,10);
+}
+function isoWeekKey(dateStr){
+  const d = new Date(dateStr + 'T00:00:00');
+  const day = (d.getDay() + 6) % 7; // Mon=0..Sun=6
+  d.setDate(d.getDate() - day + 3); // Thursday of this week
+  const firstThursday = new Date(d.getFullYear(),0,4);
+  const weekNum = 1 + Math.round(((d - firstThursday) / 86400000 - 3 + ((firstThursday.getDay()+6)%7)) / 7);
+  return d.getFullYear() + '-W' + String(weekNum).padStart(2,'0');
+}
+function isWeekend(dateStr){
+  const d = new Date(dateStr + 'T00:00:00').getDay();
+  return d === 0 || d === 6;
+}
+
+async function loadCards(){
+  const res = await storageGet('srs-cards');
+  if(res){
+    try{ return JSON.parse(res.value); }catch(e){ /* fall through to reseed */ }
+  }
+  const seeded = {};
+  BANK.forEach((q,i)=>{
+    const id = 'seed-'+i;
+    seeded[id] = {id, cat:q.cat, tag:q.tag, text:q.text, answer:q.answer, explain:q.explain,
+                  source:'seed', interval:0, ease:2.5, reps:0, due: todayStr()};
+  });
+  await storageSet('srs-cards', JSON.stringify(seeded));
+  return seeded;
+}
+async function persistCards(){ await storageSet('srs-cards', JSON.stringify(cards)); }
+
+function gradeCard(card, correct){
+  if(correct){
+    card.reps += 1;
+    if(card.reps === 1) card.interval = 1;
+    else if(card.reps === 2) card.interval = 3;
+    else card.interval = Math.round(card.interval * card.ease) || 1;
+    card.ease = Math.min(3.0, card.ease + 0.05);
+  } else {
+    card.reps = 0;
+    card.interval = 1;
+    card.ease = Math.max(1.3, card.ease - 0.2);
+  }
+  card.due = addDays(todayStr(), card.interval);
+}
+
+async function getWeakestCats(){
+  const res = await storageGet('drill-stats');
+  const stats = res ? JSON.parse(res.value) : {};
+  const list = Array.from(activeCats);
+  list.sort((a,b)=>{
+    const sa = stats[a] || {correct:0,total:0}, sb = stats[b] || {correct:0,total:0};
+    const accA = sa.total >= 3 ? sa.correct/sa.total : 0.5;
+    const accB = sb.total >= 3 ? sb.correct/sb.total : 0.5;
+    return accA - accB;
+  });
+  return list;
+}
+
+async function generateAIQuestions(n){
+  const weakest = await getWeakestCats();
+  const focus = weakest.slice(0, Math.min(3, weakest.length));
+  const prompt = `You write IELTS grammar drill questions for a student targeting Band 7.5-8.0. Their six known error categories:
+${CAT_DEFS}
+
+Generate exactly ${n} NEW fill-in-the-blank drill questions, each testing ONE of these categories, in the style of an IELTS Task 2 sentence (about government policy, education, technology, environment, or society). Bias toward these weaker categories where possible: ${focus.join(', ')}. Cover only these active categories: ${Array.from(activeCats).join(', ')}. Every sentence must be genuinely new, not a copy of a common textbook example.
+
+Each question object needs:
+- "cat": one of ${Array.from(activeCats).join(', ')}
+- "tag": a short human-readable label for the rule being tested
+- "text": the sentence as HTML, with the blank shown as <span class="blank">___</span> immediately followed by "(option1/option2)" showing the two choices in parentheses
+- "answer": the exact correct string the student must type (lowercase comparison, so keep it natural, e.g. "have their", "an", "be taught")
+- "explain": one sentence explaining the rule, may include <b> tags around the correct answer
+
+Respond with ONLY a valid JSON array of ${n} such objects, no markdown fences, no preamble.`;
+
+  try{
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-6",
+        max_tokens: 1000,
+        messages: [{ role: "user", content: prompt }]
+      })
+    });
+    const data = await response.json();
+    const text = data.content.map(b => b.text || "").join("");
+    const clean = text.replace(/```json|```/g, "").trim();
+    const arr = JSON.parse(clean);
+    return arr.map((q,i)=>({
+      id: 'ai-'+Date.now()+'-'+i,
+      cat: q.cat, tag: q.tag, text: q.text, answer: q.answer, explain: q.explain,
+      source:'ai', interval:0, ease:2.5, reps:0, due: todayStr()
+    }));
+  }catch(e){
+    console.error('AI question generation failed — this usually means the file is being viewed outside Claude\'s environment (no API access), or the network call was blocked:', e);
+    return [];
+  }
+}
+
+async function refreshDueSummary(){
+  cards = await loadCards();
+  const due = Object.values(cards).filter(c=>activeCats.has(c.cat) && c.due <= todayStr());
+  document.getElementById('dueSummary').textContent =
+    due.length > 0
+      ? `${due.length} card${due.length===1?'':'s'} due for review. Remaining slots will use fresh AI questions when available, or recycled cards if not.`
+      : `Nothing due for review yet — this session will use fresh AI questions when available, or recycled cards if not.`;
+}
+
+async function startSession(){
+  const btn = document.getElementById('startSessionBtn');
+  btn.disabled = true;
+  btn.textContent = 'Building session...';
+
+  cards = await loadCards();
+  let due = Object.values(cards).filter(c=>activeCats.has(c.cat) && c.due <= todayStr());
+  due.sort((a,b)=> a.due.localeCompare(b.due));
+  let queue = due.slice(0, SESSION_SIZE).map(c=>c.id);
+
+  const needed = SESSION_SIZE - queue.length;
+  if(needed > 0){
+    const gen = await generateAIQuestions(needed);
+    gen.forEach(q=>{ cards[q.id] = q; queue.push(q.id); });
+    await persistCards();
+  }
+
+  // Offline fallback: if AI didn't fill the session (unavailable, network-blocked, or this
+  // file is being viewed outside Claude's environment), recycle existing cards regardless of
+  // due date so a session is never blocked on the AI. This is what makes the drilling itself
+  // work fully offline — AI is enrichment, not a dependency.
+  const stillNeeded = SESSION_SIZE - queue.length;
+  if(stillNeeded > 0){
+    const already = new Set(queue);
+    const fallback = Object.values(cards)
+      .filter(c=>activeCats.has(c.cat) && !already.has(c.id))
+      .sort((a,b)=>a.due.localeCompare(b.due))
+      .slice(0, stillNeeded)
+      .map(c=>c.id);
+    queue.push(...fallback);
+  }
+
+  if(queue.length === 0){
+    document.getElementById('dueSummary').textContent = 'No questions available for the selected categories. Select at least one category and try again.';
+    btn.disabled = false; btn.textContent = 'Start Session';
+    return;
+  }
+
+  sessionQueue = queue.sort(()=>Math.random()-0.5);
+  sessionCorrect = 0; sessionTotal = 0;
+  sessionStartTime = Date.now();
+  document.getElementById('sessionScore').textContent = '0/0';
+  btn.disabled = false; btn.textContent = 'Start Session';
+
+  document.getElementById('sessionStartCard').style.display = 'none';
+  document.getElementById('sessionDoneCard').style.display = 'none';
+  document.getElementById('drillCard').style.display = 'block';
+  renderCurrentCard();
+}
+
+function renderCurrentCard(){
+  if(sessionQueue.length === 0){
+    document.getElementById('drillCard').style.display = 'none';
+    document.getElementById('sessionDoneCard').style.display = 'block';
+    document.getElementById('sessionDoneText').textContent =
+      `You scored ${sessionCorrect}/${sessionTotal} this session. Check the Error Log tab to see if your weak categories are actually improving.`;
+    if(sessionStartTime){
+      const minutes = (Date.now() - sessionStartTime) / 60000;
+      recordActivity('drill', minutes);
+      sessionStartTime = null;
+    }
+    return;
+  }
+  const id = sessionQueue[0];
+  const q = cards[id];
+  document.getElementById('qTag').textContent = q.tag;
+  document.getElementById('qText').innerHTML = q.text;
+  document.getElementById('qCounter').textContent = 'Card ' + (sessionTotal+1);
+  document.getElementById('qInput').value = '';
+  document.getElementById('qInput').disabled = false;
+  document.getElementById('feedback').className = 'feedback';
+  document.getElementById('checkBtn').style.display = 'inline-block';
+  document.getElementById('nextBtn').style.display = 'none';
+  document.querySelectorAll('.margin-mark').forEach(m=>{m.classList.remove('hit','hit-good');});
+}
+
+function renderCats(){
+  const row = document.getElementById('catRow');
+  row.innerHTML = '';
+  Object.entries(catNames).forEach(([key,label])=>{
+    const chip = document.createElement('button');
+    chip.className = 'chip on';
+    chip.textContent = label;
+    chip.dataset.cat = key;
+    chip.onclick = ()=>{
+      if(activeCats.has(key) && activeCats.size>1){activeCats.delete(key); chip.classList.remove('on');}
+      else if(!activeCats.has(key)){activeCats.add(key); chip.classList.add('on');}
+      refreshDueSummary();
+    };
+    row.appendChild(chip);
+  });
+}
+
+function renderMarginStrip(){
+  const strip = document.getElementById('marginStrip');
+  strip.innerHTML = '';
+  Object.keys(catNames).forEach(key=>{
+    const mark = document.createElement('div');
+    mark.className = 'margin-mark';
+    mark.dataset.cat = key;
+    mark.textContent = key;
+    strip.appendChild(mark);
+  });
+}
+
+/* Storage abstraction: uses Claude's window.storage when available (artifact viewer),
+   falls back to localStorage when the file is opened standalone in a browser. */
+const hasNativeStorage = (typeof window.storage !== 'undefined');
+
+async function storageGet(key){
+  if(hasNativeStorage){
+    try{ return await window.storage.get(key); }catch(e){ return null; }
+  }
+  const raw = localStorage.getItem(key);
+  return raw ? {key, value: raw} : null;
+}
+
+async function storageSet(key, value){
+  if(hasNativeStorage){
+    try{ return await window.storage.set(key, value); }catch(e){ return null; }
+  }
+  try{ localStorage.setItem(key, value); return {key, value}; }
+  catch(e){ console.error('localStorage failed', e); return null; }
+}
+
+async function logMistake(cat){
+  try{
+    const res = await storageGet('drill-stats');
+    let stats = res ? JSON.parse(res.value) : {};
+    Object.keys(catNames).forEach(k=>{ if(!stats[k]) stats[k]={correct:0,total:0}; });
+    return stats;
+  }catch(e){ return null; }
+}
+
+async function saveStat(cat, correct){
+  try{
+    let stats = await logMistake(cat);
+    if(!stats) return;
+    stats[cat].total += 1;
+    if(correct) stats[cat].correct += 1;
+    await storageSet('drill-stats', JSON.stringify(stats));
+  }catch(e){ console.error('storage error', e); }
+  await saveWeeklyStat(cat, correct);
+}
+
+async function saveWeeklyStat(cat, correct){
+  try{
+    const res = await storageGet('weekly-stats');
+    let weekly = res ? JSON.parse(res.value) : {};
+    const wk = isoWeekKey(todayStr());
+    if(!weekly[wk]) weekly[wk] = {};
+    Object.keys(catNames).forEach(k=>{ if(!weekly[wk][k]) weekly[wk][k] = {correct:0,total:0}; });
+    weekly[wk][cat].total += 1;
+    if(correct) weekly[wk][cat].correct += 1;
+    await storageSet('weekly-stats', JSON.stringify(weekly));
+  }catch(e){ console.error('weekly stat error', e); }
+}
+
+async function recordActivity(type, minutes){
+  if(minutes <= 0) return;
+  try{
+    const res = await storageGet('activity-log');
+    let log = res ? JSON.parse(res.value) : {};
+    const day = todayStr();
+    if(!log[day]) log[day] = {drillMinutes:0, essayMinutes:0};
+    if(type === 'drill') log[day].drillMinutes += minutes;
+    if(type === 'essay') log[day].essayMinutes += minutes;
+    await storageSet('activity-log', JSON.stringify(log));
+  }catch(e){ console.error('activity log error', e); }
+}
+
+document.getElementById('checkBtn').onclick = async ()=>{
+  const id = sessionQueue[0];
+  const q = cards[id];
+  const val = document.getElementById('qInput').value.trim().toLowerCase();
+  const correct = val === q.answer.toLowerCase();
+  const fb = document.getElementById('feedback');
+  fb.className = 'feedback show ' + (correct ? 'correct' : 'wrong');
+  fb.innerHTML = (correct ? '✓ Correct. ' : '✗ Not quite — correct answer: <b>'+q.answer+'</b>. ') + q.explain;
+  const mark = document.querySelector('.margin-mark[data-cat="'+q.cat+'"]');
+  if(mark) mark.classList.add(correct ? 'hit-good' : 'hit');
+
+  sessionTotal++; if(correct) sessionCorrect++;
+  document.getElementById('sessionScore').textContent = sessionCorrect + '/' + sessionTotal;
+  document.getElementById('qInput').disabled = true;
+  document.getElementById('checkBtn').style.display = 'none';
+  document.getElementById('nextBtn').style.display = 'inline-block';
+
+  gradeCard(q, correct);
+  await persistCards();
+  await saveStat(q.cat, correct);
+
+  sessionQueue.shift();
+  if(!correct){
+    // requeue this card later in the same session so it gets another attempt today
+    const reinsertAt = Math.min(sessionQueue.length, 3);
+    sessionQueue.splice(reinsertAt, 0, id);
+  }
+};
+document.getElementById('toggleHeaderBtn').onclick = ()=>{
+  const detail = document.getElementById('headerDetail');
+  const btn = document.getElementById('toggleHeaderBtn');
+  const showing = detail.style.display !== 'none';
+  detail.style.display = showing ? 'none' : 'block';
+  btn.textContent = showing ? 'Why this exists' : 'Hide';
+};
+
+document.getElementById('nextBtn').onclick = ()=>{ renderCurrentCard(); };
+document.addEventListener('keydown', e=>{
+  if(e.key !== 'Enter') return;
+  if(!document.getElementById('view-drill').classList.contains('active')) return;
+  if(document.getElementById('checkBtn').style.display!=='none'){
+    document.getElementById('checkBtn').click();
+  } else if(document.getElementById('nextBtn').style.display!=='none'){
+    document.getElementById('nextBtn').click();
+  }
+});
+document.getElementById('startSessionBtn').onclick = startSession;
+document.getElementById('newSessionBtn').onclick = ()=>{
+  document.getElementById('sessionDoneCard').style.display = 'none';
+  document.getElementById('sessionStartCard').style.display = 'block';
+  refreshDueSummary();
+};
+
+/* ---------- Tabs ---------- */
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.onclick = ()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('view-'+tab.dataset.view).classList.add('active');
+    if(tab.dataset.view==='log') renderLog();
+    if(tab.dataset.view==='calendar') renderCalendar();
+  };
+});
+
+/* ---------- Essay view ---------- */
+const PROMPTS = [
+  "Some people believe that unpaid community service should be a compulsory part of high school education. To what extent do you agree or disagree?",
+  "In many countries, the gap between the rich and the poor is widening. What problems does this cause, and what solutions can you suggest?",
+  "Some argue that technology has made people more isolated, while others believe it has brought people closer together. Discuss both views and give your own opinion.",
+  "Governments should invest more in public transport rather than building new roads for cars. To what extent do you agree or disagree?",
+  "Some people think that children should begin learning a foreign language as soon as they start school. Do the advantages outweigh the disadvantages?",
+  "Many people believe that success in life comes from taking risks, while others think careful planning is more important. Discuss both views and give your opinion.",
+];
+document.getElementById('newPromptBtn').onclick = ()=>{
+  document.getElementById('essayPrompt').textContent = PROMPTS[Math.floor(Math.random()*PROMPTS.length)];
+  clearInterval(timerInterval); timerRunning = false; timeLeft = 40*60; essayMinutesLogged = 0;
+  document.getElementById('startTimerBtn').textContent = 'Start';
+  document.getElementById('essayText').disabled = false;
+  document.getElementById('essayText').value = '';
+  document.getElementById('wordCount').textContent = '0 words';
+  document.getElementById('aiFeedbackPanel').style.display = 'none';
+  renderTimer();
+};
+document.getElementById('essayText').addEventListener('input', e=>{
+  const words = e.target.value.trim().split(/\s+/).filter(Boolean).length;
+  document.getElementById('wordCount').textContent = words + ' words (target: 250+)';
+});
+document.querySelectorAll('.checklist-item').forEach(item=>{
+  const box = item.querySelector('input');
+  box.addEventListener('change', ()=>{ item.classList.toggle('done', box.checked); });
+});
+
+let timerInterval = null, timeLeft = 40*60, timerRunning = false, essayMinutesLogged = 0;
+function renderTimer(){
+  const m = Math.floor(timeLeft/60).toString().padStart(2,'0');
+  const s = (timeLeft%60).toString().padStart(2,'0');
+  const disp = document.getElementById('timerDisplay');
+  disp.textContent = m+':'+s;
+  disp.classList.toggle('warn', timeLeft <= 300);
+}
+document.getElementById('startTimerBtn').onclick = ()=>{
+  if(timerRunning){
+    clearInterval(timerInterval); timerRunning = false;
+    document.getElementById('startTimerBtn').textContent = 'Resume';
+    return;
+  }
+  timerRunning = true;
+  document.getElementById('startTimerBtn').textContent = 'Pause';
+  timerInterval = setInterval(()=>{
+    timeLeft--; renderTimer();
+    if(timeLeft<=0){ clearInterval(timerInterval); timerRunning=false; document.getElementById('essayText').disabled=true; }
+  },1000);
+};
+renderTimer();
+
+/* ---------- AI Feedback ---------- */
+const AI_SYSTEM_PROMPT = `You are an IELTS Writing Task 2 examiner. You are reviewing an essay from a student whose known recurring errors fall into exactly six categories:
+SVA = subject-verb agreement errors with collective or uncountable nouns (e.g. "government have", "research suggest", "news were").
+BOTH = the fixed error "both X and Y has its" instead of "both X and Y have their".
+ART = missing or wrong article (a/an/the) before a singular countable noun.
+MOD = wrong verb form after a modal (should/can/must) or causative verb (make/let), e.g. "should to reduce" or "make people to follow".
+PASS = passive voice construction errors, e.g. missing "be" as in "should teach" instead of "should be taught".
+WF = wrong word form (noun/adjective/adverb confusion, e.g. "economic" vs "economical", "effective" vs "effectively").
+
+Read the essay below. Find genuine instances of these six error types ONLY (ignore other issues like vocabulary range or task achievement unless they are severe). For each instance, quote the exact original phrase from the essay (max 12 words), give the corrected version, and a one-sentence explanation of the rule.
+
+Then give an overall IELTS Writing Task 2 band estimate (a number between 4.0 and 9.0, in 0.5 steps) based on grammatical range and accuracy specifically, and a 2-sentence summary of the biggest pattern you see.
+
+Respond with ONLY valid JSON, no markdown fences, no preamble, in exactly this shape:
+{"band": 6.5, "summary": "...", "errors": [{"category": "SVA", "original": "...", "correction": "...", "note": "..."}]}
+List at most 6 errors, the most important ones. If you find fewer than 6 genuine errors, list fewer — do not invent errors that aren't there.`;
+
+async function getAIFeedback(){
+  const essay = document.getElementById('essayText').value.trim();
+  const wc = essay.split(/\s+/).filter(Boolean).length;
+  const statusEl = document.getElementById('aiStatus');
+  const btn = document.getElementById('aiFeedbackBtn');
+
+  if(wc < 50){
+    statusEl.textContent = 'Write at least 50 words first.';
+    statusEl.style.color = 'var(--error)';
+    return;
+  }
+
+  statusEl.style.color = 'var(--text-dim)';
+  statusEl.innerHTML = '<span class="spin"></span>Reading your essay...';
+  btn.disabled = true;
+
+  const elapsedMinutes = (40*60 - timeLeft) / 60;
+  const delta = elapsedMinutes - essayMinutesLogged;
+  if(delta > 0){ recordActivity('essay', delta); essayMinutesLogged = elapsedMinutes; }
+
+  try{
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-6",
+        max_tokens: 1000,
+        messages: [
+          { role: "user", content: AI_SYSTEM_PROMPT + "\n\nESSAY:\n" + essay }
+        ]
+      })
+    });
+    const data = await response.json();
+    const text = data.content.map(b => b.text || "").join("");
+    const clean = text.replace(/```json|```/g, "").trim();
+    const parsed = JSON.parse(clean);
+    renderAIFeedback(parsed);
+    statusEl.textContent = '';
+  }catch(e){
+    console.error('AI feedback error', e);
+    statusEl.textContent = 'Feedback failed — try again.';
+    statusEl.style.color = 'var(--error)';
+  }finally{
+    btn.disabled = false;
+  }
+}
+
+function renderAIFeedback(parsed){
+  document.getElementById('aiFeedbackPanel').style.display = 'block';
+  document.getElementById('aiBand').textContent = parsed.band ?? '-';
+  document.getElementById('aiSummary').textContent = parsed.summary || '';
+  const list = document.getElementById('aiErrorList');
+  list.innerHTML = '';
+  if(!parsed.errors || parsed.errors.length === 0){
+    list.innerHTML = '<div class="empty">No instances of your six error types found in this essay. That is a real result — trust it, but keep checking manually too.</div>';
+    return;
+  }
+  parsed.errors.forEach(err=>{
+    const card = document.createElement('div');
+    card.className = 'ai-error-card';
+    card.innerHTML = `
+      <div class="tag">${catNames[err.category] || err.category}</div>
+      <div class="quote">"${err.original}"</div>
+      <div class="arrow">→</div>
+      <div class="fix">${err.correction}</div>
+      <div class="note">${err.note}</div>
+    `;
+    list.appendChild(card);
+  });
+}
+
+document.getElementById('aiFeedbackBtn').onclick = getAIFeedback;
+
+/* ---------- Calendar view ---------- */
+const DAY_LABELS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+
+async function renderCalendar(){
+  const statGrid = document.getElementById('calStatGrid');
+  const labelsEl = document.getElementById('calDayLabels');
+  const gridEl = document.getElementById('calGrid');
+  statGrid.innerHTML = '<div class="empty" style="grid-column:1/-1;">Loading...</div>';
+  gridEl.innerHTML = '';
+
+  let log;
+  try{
+    const res = await storageGet('activity-log');
+    log = res ? JSON.parse(res.value) : {};
+  }catch(e){ log = {}; }
+
+  labelsEl.innerHTML = '';
+  DAY_LABELS.forEach(d=>{
+    const span = document.createElement('span');
+    span.textContent = d;
+    if(d==='Sat'||d==='Sun') span.classList.add('weekend');
+    labelsEl.appendChild(span);
+  });
+
+  // Build a Mon-start grid covering the last 4 full weeks up to today
+  const today = new Date(todayStr()+'T00:00:00');
+  const todayDow = (today.getDay()+6)%7; // 0=Mon
+  const gridStart = new Date(today);
+  gridStart.setDate(today.getDate() - todayDow - 21); // start of the week 3 weeks before this week
+
+  let weekdayMinutes = 0, weekendMinutes = 0, activeDays = 0;
+  const cells = [];
+  for(let i=0;i<28;i++){
+    const d = new Date(gridStart);
+    d.setDate(gridStart.getDate()+i);
+    const ds = d.toISOString().slice(0,10);
+    const entry = log[ds] || {drillMinutes:0, essayMinutes:0};
+    const total = entry.drillMinutes + entry.essayMinutes;
+    const weekend = isWeekend(ds);
+    const isFuture = ds > todayStr();
+    if(!isFuture && total > 0){
+      activeDays++;
+      if(weekend) weekendMinutes += total; else weekdayMinutes += total;
+    }
+    cells.push({ds, total, weekend, isFuture});
+  }
+
+  gridEl.innerHTML = '';
+  cells.forEach(c=>{
+    const div = document.createElement('div');
+    let cls = 'cal-cell';
+    if(c.weekend) cls += ' weekend-border';
+    if(c.isFuture) cls += ' future';
+    div.className = cls;
+    div.style.background = c.isFuture ? 'var(--panel-2)' : heatColor(c.total);
+    div.title = c.ds + ' — ' + Math.round(c.total) + ' min' + (c.weekend ? ' (weekend)' : '');
+    gridEl.appendChild(div);
+  });
+
+  const totalMinutes = weekdayMinutes + weekendMinutes;
+  statGrid.innerHTML = `
+    <div class="stat"><div class="n">${Math.round(totalMinutes)}</div><div class="l">Minutes, last 4 weeks</div></div>
+    <div class="stat"><div class="n">${Math.round(weekendMinutes)}</div><div class="l">Weekend minutes</div></div>
+    <div class="stat"><div class="n">${Math.round(weekdayMinutes)}</div><div class="l">Weekday minutes</div></div>
+    <div class="stat"><div class="n">${activeDays}/28</div><div class="l">Days with any practice</div></div>
+  `;
+}
+
+function heatColor(minutes){
+  if(minutes <= 0) return 'var(--panel-2)';
+  if(minutes < 10) return '#3a3560';
+  if(minutes < 25) return '#6b4f6a';
+  if(minutes < 45) return '#a5556a';
+  return 'var(--error)';
+}
+
+/* ---------- Error log view ---------- */
+async function renderLog(){
+  const grid = document.getElementById('statGrid');
+  const chart = document.getElementById('barChart');
+  grid.innerHTML = '<div class="empty" style="grid-column:1/-1;">Loading...</div>';
+  let stats;
+  try{
+    const res = await storageGet('drill-stats');
+    stats = res ? JSON.parse(res.value) : null;
+  }catch(e){ stats = null; }
+
+  if(!stats){
+    grid.innerHTML = '<div class="empty" style="grid-column:1/-1;">No drill data yet — go answer some questions.</div>';
+    chart.innerHTML = '';
+    return;
+  }
+
+  let totalCorrect=0, totalQ=0;
+  Object.values(stats).forEach(s=>{ totalCorrect+=s.correct; totalQ+=s.total; });
+  const acc = totalQ ? Math.round((totalCorrect/totalQ)*100) : 0;
+
+  grid.innerHTML = `
+    <div class="stat"><div class="n">${totalQ}</div><div class="l">Questions drilled</div></div>
+    <div class="stat"><div class="n">${acc}%</div><div class="l">Overall accuracy</div></div>
+    <div class="stat"><div class="n">${totalCorrect}</div><div class="l">Correct answers</div></div>
+  `;
+
+  chart.innerHTML = '';
+  Object.entries(catNames).forEach(([key,label])=>{
+    const s = stats[key] || {correct:0,total:0};
+    const pct = s.total ? Math.round((s.correct/s.total)*100) : 0;
+    const row = document.createElement('div');
+    row.className = 'bar-row';
+    row.innerHTML = `
+      <div class="bar-label"><span>${label}</span><span>${s.correct}/${s.total} · ${pct}%</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
+    `;
+    chart.appendChild(row);
+  });
+
+  await renderTrend();
+}
+
+async function renderTrend(){
+  const trendEl = document.getElementById('trendChart');
+  trendEl.innerHTML = '<div class="empty">Loading...</div>';
+  let weekly;
+  try{
+    const res = await storageGet('weekly-stats');
+    weekly = res ? JSON.parse(res.value) : {};
+  }catch(e){ weekly = {}; }
+
+  const now = new Date();
+  const thisWeek = isoWeekKey(todayStr());
+  const lastWeekDate = new Date(now); lastWeekDate.setDate(now.getDate()-7);
+  const lastWeek = isoWeekKey(lastWeekDate.toISOString().slice(0,10));
+
+  const thisWeekStats = weekly[thisWeek] || {};
+  const lastWeekStats = weekly[lastWeek] || {};
+
+  const hasAnyData = Object.keys(thisWeekStats).length > 0 || Object.keys(lastWeekStats).length > 0;
+  if(!hasAnyData){
+    trendEl.innerHTML = '<div class="empty">Not enough weekly data yet. Drill for a week, then come back — one session isn\'t a trend.</div>';
+    return;
+  }
+
+  trendEl.innerHTML = '';
+  Object.entries(catNames).forEach(([key,label])=>{
+    const t = thisWeekStats[key] || {correct:0,total:0};
+    const l = lastWeekStats[key] || {correct:0,total:0};
+    const tAcc = t.total ? Math.round((t.correct/t.total)*100) : null;
+    const lAcc = l.total ? Math.round((l.correct/l.total)*100) : null;
+
+    let deltaHtml, deltaClass;
+    if(tAcc === null || lAcc === null){
+      deltaHtml = '—'; deltaClass = 'flat';
+    } else {
+      const diff = tAcc - lAcc;
+      deltaClass = diff > 0 ? 'up' : diff < 0 ? 'down' : 'flat';
+      deltaHtml = (diff > 0 ? '+' : '') + diff + 'pp';
+    }
+
+    const row = document.createElement('div');
+    row.className = 'trend-row';
+    row.innerHTML = `
+      <div class="trend-label">${label}</div>
+      <div class="trend-numbers">last wk ${lAcc===null?'—':lAcc+'%'} (${l.total}) → this wk ${tAcc===null?'—':tAcc+'%'} (${t.total})</div>
+      <div class="trend-delta ${deltaClass}">${deltaHtml}</div>
+    `;
+    trendEl.appendChild(row);
+  });
+}
+
+document.getElementById('resetBtn').onclick = async ()=>{
+  if(!confirm('This clears all saved drill progress, time logs, and card scheduling. Continue?')) return;
+  try{
+    const empty = {};
+    Object.keys(catNames).forEach(k=>{ empty[k]={correct:0,total:0}; });
+    await storageSet('drill-stats', JSON.stringify(empty));
+    await storageSet('weekly-stats', JSON.stringify({}));
+    await storageSet('activity-log', JSON.stringify({}));
+    await storageSet('srs-cards', JSON.stringify({}));
+    renderLog();
+  }catch(e){ console.error(e); }
+};
+
+/* ---------- init ---------- */
+renderCats();
+renderMarginStrip();
+refreshDueSummary();
+</script>
+</body>
+</html>
